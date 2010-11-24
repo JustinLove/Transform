@@ -195,6 +195,10 @@ describe Transform do
     output.should == [[], []]
   end
 
+  it 'returns output' do
+    Transform.transform(one_row, output) {}.should equal output
+  end
+
   it 'process one row' do
     Transform.transform(one_row, output) do
       create 'foo'
