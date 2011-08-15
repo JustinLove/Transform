@@ -37,8 +37,8 @@ module Transform
   # @param [ #ltlt ] output data sink; should respond to #<<
   # @return [output] object specified as output parameter
   # @yield block specifying the transformation to target columns using {Body::BlockAPI}
-  def self.transform(input, output, &block)
-    output << Header.new([], &block).output_row
+  def self.transform(input, output, options = {}, &block)
+    output << Header.new([], &block).output_row unless options[:header] == false
     Body.new(input.shift, input, &block).process_into(output)
     return output
   end

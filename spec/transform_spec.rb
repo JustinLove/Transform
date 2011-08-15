@@ -212,5 +212,12 @@ describe Transform do
     end
     output.should == [%w{foo}, [''], ['']]
   end
+
+  it 'optional header' do
+    Transform.transform(two_rows, output, :header => false) do
+      create 'foo'
+    end
+    output.should == [[''], ['']]
+  end
 end
 
