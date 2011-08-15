@@ -144,11 +144,11 @@ describe Transform::Body do
     let :columns do %w{numbers n} end
     let :input do [%w{one 1}, %w{two 2}] end
     def output; subject.output_row; end
-    let :first_row do ['', 'one', '1', 'ONE'] end
-    let :second_row do ['', 'two', '2', 'TWO'] end
+    let :first_row do ['default', 'one', '1', 'ONE'] end
+    let :second_row do ['default', 'two', '2', 'TWO'] end
     let :subject do
       Transform::Body.new(columns, input) do
-        create 'foo'
+        create 'foo' do 'default' end
         copy 'numbers'
         rename 'n', 'x'
         map 'numbers', 'letters' do |number|

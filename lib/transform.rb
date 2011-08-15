@@ -156,8 +156,10 @@ module Transform
       #   create 'Approved'
       #
       # @param [String] column name
+      # @yield Provide a default value (OPTIONAL)
+      # @yieldreturn [String] data value for the new column
       def create(column)
-        write('')
+        write(block_given? ? yield : '')
       end
 
       # Preserve as-is
