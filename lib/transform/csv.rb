@@ -10,6 +10,8 @@ module Transform
   #
   # @param [String] filename
   # @param [String] filename
+  # @param [optional, Hash] options
+  # @option options [boolean] :header defaults to true (print header)
   # @yield block specifying the transformation to target columns using {Body::BlockAPI}
   def self.csv2csv(inputfile, outputfile, options = {}, &block)
     CSV.open(inputfile, 'rb') do |input|

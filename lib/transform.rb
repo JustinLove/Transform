@@ -35,6 +35,8 @@ module Transform
   #
   # @param [ #shift ] input data source; should produce an array in response to #shift
   # @param [ #ltlt ] output data sink; should respond to #<<
+  # @param [optional, Hash] options
+  # @option options [boolean] :header defaults to true (print header)
   # @return [output] object specified as output parameter
   # @yield block specifying the transformation to target columns using {Body::BlockAPI}
   def self.transform(input, output, options = {}, &block)
@@ -156,7 +158,7 @@ module Transform
       #   create 'Approved'
       #
       # @param [String] column name
-      # @yield Provide a default value (OPTIONAL)
+      # @yield [optional] Provide a default value
       # @yieldreturn [String] data value for the new column
       def create(column)
         write(block_given? ? yield : '')
