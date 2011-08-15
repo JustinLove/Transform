@@ -11,10 +11,10 @@ module Transform
   # @param [String] filename
   # @param [String] filename
   # @yield block specifying the transformation to target columns using {Body::BlockAPI}
-  def self.csv2csv(inputfile, outputfile, &block)
+  def self.csv2csv(inputfile, outputfile, options = {}, &block)
     CSV.open(inputfile, 'rb') do |input|
       CSV.open(outputfile, 'wb') do |output|
-        transform(input, output, &block)
+        transform(input, output, options, &block)
       end
     end
   end

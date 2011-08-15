@@ -48,6 +48,18 @@ describe Transform do
         outputfile.close unless outputfile.closed?
       end
     end
+
+    it 'file helper with options' do
+      begin
+        Transform.csv2csv(inputfile.path, outputfile.path, :header => false) do
+          rename 'numbers', 'letters'
+        end
+        outputfile.open.read.should == "one\n"
+      ensure
+        inputfile.close unless inputfile.closed?
+        outputfile.close unless outputfile.closed?
+      end
+    end
   end
 end
 
